@@ -1,6 +1,6 @@
 ---
-# Grouping food by their Environmental Footprint using a clustering algorithm
----
+# Food and their Environmental Footprint
+
 
 ## Objective
 The goal is to find the best unsupervised clustering algorithm that will group food by their Environmental Footprint. Once the best clustering algorithm is found, the clusters will be used to investigate which diet has a larger Environmental Footprint and  how can someone can modify their diet to reduce their Environmental Footprint.
@@ -21,7 +21,7 @@ The [database](https://entrepot.recherche.data.gouv.fr/dataset.xhtml?persistentI
 
 
 ---
-### Step 1: Data Cleaning,
+## Step 1: Data Cleaning,
 
 Data cleaning is crucial for data analysis. The cleaned data can be found here [Cleaned Dataset](data/AGRIBALYSE3.2_Synthese_cleaned.xlsx)
 
@@ -31,7 +31,7 @@ Data cleaning is crucial for data analysis. The cleaned data can be found here [
 4. Missing values will be found and replaced.
 
 ---
-### Step 2 : Data Analysis
+## Step 2 : Data Analysis
 
 Data Analysis is necessary to understand 
    - the dataset
@@ -44,7 +44,7 @@ Since the goal is to create clusters that will group food that has a similar Env
 
 
 ---
-### Step 3 : Feature Engeneering
+## Step 3 : Feature Engeneering
 
 Most clustering models can only accept numeric values. Therefore, feature engineered is a crucial step to transform categorical columns into numerical columns.  The featured engineered data can be found here [Engineered Dataset](data/AGRIBALYSE3.2_Synthese_cleaned_featEng.xlsx)
 
@@ -55,7 +55,7 @@ Two dataset will be compare here
 2. A subset of the dataset 
 
 ---
-### Step 4 : Clustering Models
+## Step 4 : Clustering Models
 
 Three clustering models will be compared. Here are the three types of clustering model we will be evaluating.
 
@@ -66,11 +66,11 @@ Three clustering models will be compared. Here are the three types of clustering
 All modules originate from the SciKit Learn module.
 
 ---
-### Step 5 : Validation of the Clustering Models
+## Step 5 : Validation of the Clustering Models
 An subjective evaluation will be performed to access how well each clustering algorithm has grouped the food by Environmental Footprint. 
 
 
-### Step 6 : Analysis of the best Clustering Model (Agglomerative Clustering)
+## Step 6 : Analysis of the best Clustering Model (Agglomerative Clustering)
 ---
 More detailed results can be found here [Results](Notebook/Results.md)
 
