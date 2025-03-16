@@ -1,10 +1,12 @@
+---
 # Grouping food by their Environmental Footprint using a clustering algorithm
+---
 
 ## Objective
 The goal is to find the best unsupervised clustering algorithm that will group food by their Environmental Footprint. Once the best clustering algorithm is found, the clusters will be used to investigate which diet has a larger Environmental Footprint and  how can someone can modify their diet to reduce their Environmental Footprint.
 
 
-### Data source
+## Data source
 [ABRIBALYSE](https://doc.agribalyse.fr/documentation-en/agribalyse-data/data-access) dataset will be used for this project.
 
 AGRIBALYSE® is the most comprehensive French public database of environmental indicators for agricultural and food products based on Life Cycle Assessment.
@@ -67,7 +69,7 @@ All modules originate from the SciKit Learn module.
 ### Step 5 : Validation of the Clustering Models
 An subjective evaluation will be performed to access how well each clustering algorithm has grouped the food by Environmental Footprint. 
 
----
+
 ### Step 6 : Analysis of the best Clustering Model (Agglomerative Clustering)
 ---
 More detailed results can be found here [Results](Notebook/Results.md)
@@ -77,7 +79,7 @@ Using the data subset, the Agglomerative Clustering algorithm successfully ident
 
 ![Clusters_EF_Score](../graph/Clusters_AC.png)
 
-
+<center>
 | Cluster | Environmental Footprint          | Key Characteristics |
 |---------|----------------------------------------|----------------------|
 | 4       | Lowest      | - Lowest Fine Particles  <br> - Lowest Ecotoxicity for Freshwater Aquatic System  <br> - Low Land Use  <br> - Lowest Energy Resource Depletion  <br> - Lowest Climate Change Impact |
@@ -91,7 +93,7 @@ Using the data subset, the Agglomerative Clustering algorithm successfully ident
 | 6       | High          | - High Ecotoxicity for Freshwater Aquatic System  <br> - Highest Land Use  <br> - Highest Climate Change Impact |
 | 9       | Highest       | - Highest Photochemical Ozone Formation  <br> - Highest Ecotoxicity for Freshwater Aquatic System  <br> - Highest Energy Resource Depletion  <br> - Highest Mineral Resource Depletion |
 
-
+</center>
 
 </br></br>
 
