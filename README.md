@@ -70,8 +70,9 @@ All modules originate from the SciKit Learn module.
 An subjective evaluation will be performed to access how well each clustering algorithm has grouped the food by Environmental Footprint. 
 
 
-## Step 6 : Analysis of the best Clustering Model (Agglomerative Clustering)
 ---
+## Step 6 : Analysis of the best Clustering Model (Agglomerative Clustering)
+
 More detailed results can be found here [Results](Notebook/Results.md)
 
 
