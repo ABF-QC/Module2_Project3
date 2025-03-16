@@ -80,6 +80,7 @@ Using the data subset, the Agglomerative Clustering algorithm successfully ident
 ![Clusters_EF_Score](../graph/Clusters_AC.png)
 
 <center>
+    
 | Cluster | Environmental Footprint          | Key Characteristics |
 |---------|----------------------------------------|----------------------|
 | 4       | Lowest      | - Lowest Fine Particles  <br> - Lowest Ecotoxicity for Freshwater Aquatic System  <br> - Low Land Use  <br> - Lowest Energy Resource Depletion  <br> - Lowest Climate Change Impact |
