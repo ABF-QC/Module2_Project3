@@ -2,9 +2,11 @@
 # Dataset
 ---
 Two dataset will be used by the clustering algorithm.
+1. The full dataset
+2. A subset of the dataset 
 
 ### Full dataset
-| Column name (English)               | Units  |
+| Column name             | Units  |
 |--------------------------------------|--------|
 | Food Sub-group                      | None   |
 | Season Code                          | 0: out of season</br>1: in season</br>2: mixed consumption |
@@ -34,7 +36,7 @@ Two dataset will be used by the clustering algorithm.
 
 
 ### Data subset
-| Column name (English)               | Units  |
+| Column name               | Units  |
 |--------------------------------------|--------|
 | Climate Change                       | kg CO2 eq/kg de produit |
 | Photochemical Ozone Formation        | kg NMVOC eq/kg de produit |
@@ -54,7 +56,7 @@ Two dataset will be used by the clustering algorithm.
 # Analysis
 ---
 
-Most Food have an eF Score between 0 and 2
+Most Food have an Environmental Footprint Score between 0 and 2.
 
 ![Distribution](../graph/Histogram.png)
 
@@ -65,7 +67,8 @@ The food group 'Meat, Eggs, Fish' contains the food with the highest EF Score.
 
 </br></br>
 
-Of the group 'Meat, Eggs, Fish', the food sub-group 'Meat', 'Fish' and 'Shellfish' contains the food with the highest EF Score. On the other hand, Eggs and Meat Substitute have a very low EF SCore.
+Of the group 'Meat, Eggs, Fish', the food sub-group 'Meat', 'Fish' and 'Shellfish' contains the food with the highest EF Score.
+On the other hand, 'Eggs' and 'Meat Substitutes' have a very low EF SCore.
 
 ![Food Sub-Group vs EF Score](../graph/FoodSubGroup_vs_EF.png)
 
