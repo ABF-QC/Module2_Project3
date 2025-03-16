@@ -17,7 +17,7 @@ It provides indicators of the environmental impact of :
    - The main food products consumed in France.
 
 
-The [database](https://entrepot.recherche.data.gouv.fr/dataset.xhtml?persistentId=doi:10.57745/XTENSJ)) contains data on over 200 agricultural products and over 2,500 ready-to-eat foods.
+The [database](https://entrepot.recherche.data.gouv.fr/dataset.xhtml?persistentId=doi:10.57745/XTENSJ) contains data on over 200 agricultural products and over 2,500 ready-to-eat foods.
 
 
 ---
@@ -77,7 +77,7 @@ More detailed results can be found here [Results](Notebook/Results.md)
 
 Using the data subset, the Agglomerative Clustering algorithm successfully identified the key elements to group food data by their Environmental Footprint.
 
-![Clusters_EF_Score](../graph/Clusters_AC.png)
+![Clusters_EF_Score](graph/Clusters_AC.png)
 
 <center>
     
