@@ -21,7 +21,7 @@ The [database](https://entrepot.recherche.data.gouv.fr/dataset.xhtml?persistentI
 
 
 ---
-## Step 1: Data Cleaning,
+## Step 1: Data Cleaning
 
 Data cleaning is crucial for data analysis. The cleaned data can be found here [Cleaned Dataset](data/AGRIBALYSE3.2_Synthese_cleaned.xlsx)
 
