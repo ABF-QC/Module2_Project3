@@ -1,26 +1,73 @@
 ---
 # Dataset
 ---
-The most stricking characteristic of the datset is that it is unbalanced.
+Two dataset will be used by the clustering algorithm.
 
-![Dataset Distribution](../graph/Dataset_ditribution.png)
+### Full dataset
+| Column name (English)               | Units  |
+|--------------------------------------|--------|
+| Food Sub-group                      | None   |
+| Season Code                          | 0: out of season</br>1: in season</br>2: mixed consumption |
+| Airplane Code                        | 0: not by airplane</br> 1: by airplane |
+| Delivery (temperature and distance)  | None   |
+| Packaging Approach                   | None   |
+| Preparation (cooking)                | None   |
+| Climate Change                       | kg CO2 eq/kg de produit |
+| Ozone Layer Depletion                | kg CVC11 eq/kg de produit |
+| Ionizing Radiation                   | kBq U-235 eq/kg de produit |
+| Photochemical Ozone Formation        | kg NMVOC eq/kg de produit |
+| Fine Particles                       | disease inc./kg de produit |
+| Toxicological Effects on Human Health: Non-carcinogenic Substances | CTUh/kg de produit |
+| Toxicological Effects on Human Health: Carcinogenic Substances | CTUh/kg de produit.1 |
+| Terrestrial and Freshwater Acidification | mol H+ eq/kg de produit |
+| Freshwater Eutrophication            | kg P eq/kg de produit |
+| Marine Eutrophication                | kg N eq/kg de produit |
+| Terrestrial Eutrophication           | mol N eq/kg de produit |
+| Ecotoxicity for Freshwater Aquatic Ecosystems | CTUe/kg de produit |
+| Land Use                             | Pt/kg de produit |
+| Water Resource Depletion             | m³ depriv./kg de produit |
+| Energy Resource Depletion            | MJ/kg de produit |
+| Mineral Resource Depletion           | kg Sb eq/kg de produit |
+| Climate Change - Biogenic Emissions  | kg CO2 eq/kg de produit.1 |
+| Climate Change - Fossil Emissions    | kg CO2 eq/kg de produit.2 |
+| Climate Change - Emissions from Land Use Change                           | kg CO2 eq/kg de produit.3              |
+
+
+### Data subset
+| Column name (English)               | Units  |
+|--------------------------------------|--------|
+| Climate Change                       | kg CO2 eq/kg de produit |
+| Photochemical Ozone Formation        | kg NMVOC eq/kg de produit |
+| Fine Particles                       | disease inc./kg de produit |
+| Toxicological Effects on Human Health: Non-carcinogenic Substances | CTUh/kg de produit |
+| Toxicological Effects on Human Health: Carcinogenic Substances | CTUh/kg de produit.1 |
+| Freshwater Eutrophication            | kg P eq/kg de produit |
+| Marine Eutrophication                | kg N eq/kg de produit |
+| Ecotoxicity for Freshwater Aquatic Ecosystems | CTUe/kg de produit |
+| Land Use                             | Pt/kg de produit |
+| Water Resource Depletion             | m³ depriv./kg de produit |
+| Energy Resource Depletion            | MJ/kg de produit |
+| Mineral Resource Depletion           | kg Sb eq/kg de produit |
+
 
 ---
 # Analysis
 ---
-The churn reason were analyzed to pinpoint the factors that pushed a client to leave the company.
 
-![Churn Reason Distribution](../graph/ChurnReason.png)
+Most Food have an eF Score between 0 and 2
 
-</br></br>
-
-The distribution of the 'Tenure Months' column indicated that it was going a good predictive feature.
-![TenureMonths Distribution](../graph/TenureMonths.png)
+![Distribution](../graph/Histogram.png)
 
 </br></br>
 
-The distribution of the 'Contract' column for Churn clients indicated that it was going a good predictive feature.
-![TenureMonths Distribution](../graph/Contract.png)
+The food group 'Meat, Eggs, Fish' contains the food with the highest EF Score.
+![Food Group vs EF Score](../graph/FoodGroup_vs_EF.png)
+
+</br></br>
+
+Of the group 'Meat, Eggs, Fish', the food sub-group 'Meat', 'Fish' and 'Shellfish' contains the food with the highest EF Score. On the other hand, Eggs and Meat Substitute have a very low EF SCore.
+
+![Food Sub-Group vs EF Score](../graph/FoodSubGroup_vs_EF.png)
 
 </br></br>
 By looking at the correlation between the various columns, we noticed that all the categorical columns that contains a category 'No internet service' is in fact a perfect replica of the columns 'Internet Service' with the category value of 'No'.
