@@ -1,6 +1,6 @@
 ---
 # Dataset
----
+
 Two dataset will be used by the clustering algorithm.
 1. The full dataset
 2. A subset of the dataset 
@@ -54,7 +54,6 @@ Two dataset will be used by the clustering algorithm.
 
 ---
 # Analysis
----
 
 Most Food have an Environmental Footprint (EF) Score between 0 and 2.
 
@@ -88,50 +87,53 @@ Using the 'Stove' and 'Oven' to preapare a meal leads to higher EF Score
 
 ---
 # Our models
----
+
 
 ### **KMeans**
+</br>
 
-1. Full dataset
+**1. Full dataset**
+
 ![k Kmeans](../graph/KMeans-k-full.png)
-
+</br></br>
 Tested 3 K value for KMeans clustering 60,80,90. However, none captured the grouping by EF Score that we were expecting. The food seems to be grouped by food category.
 
 ![k Kmeans](../graph/Kmeans-90k.png)
-
-2. Data Subset
+</br></br>
+**2. Data Subset**
 
 ![k Kmeans](../graph/Kmeans-10k.png)
-
+</br></br>
 Tested many K value for KMeans. However, 10 clusters was performing better by capturing the right amount of cluster and regrouping food with similar EF score together.
 
 ![k Kmeans](../graph/Cluster-Kmeans-10k.png)
-
+</br></br>
 
 KMeans were able to group food by EF Score. 
 ![Clusters_EF_Score](graph/Clusters_Kmeans.png)
-
+</br></br>
 
 ### **Agglomerative Clustering (AC)**
 
 For all AC model the metric was et to 'euclidean' and the linkage was set to 'ward'.
+</br>
+**1. Full dataset**
 
-1. Full dataset
 ![k AC](../graph/Silhouette_full.png)
-
+</br></br>
 Tested 3 K value for AC clustering 60,80,90. However, none captured the grouping by EF Score that we were expecting. The food seems to be grouped by food category.
 
 ![AC](../graph/AC-90k.png)
-
-2. Data Subset
+</br></br>
+**2. Data Subset**
 
 ![k AC-10](../graph/Silhouette-sub.png)
-
+</br></br>
 Tested many K value for KMeans. However, 10 clusters was performing better by capturing the right amount of cluster and regrouping food with similar EF score together.
 
 ![AC-10](../graph/Ac-10k.png)
 
-
+</br></br>
 AC was the best at grouping food by EF Score. 
 ![Clusters_EF_Score](../graph/Clusters_AC.png)
 
@@ -144,11 +146,10 @@ Tried various parameters, but in the end I believe my dataset is not dense enoug
 
 ---
 # Results of the best Clustering model - Agglomerative Clustering
----
 
 
 ![Clusters_EF_Score](../graph/Clusters_AC.png)
-
+</br></br>
 
 
 | Cluster | Environmental Footprint          | Key Characteristics |
@@ -167,7 +168,7 @@ Tried various parameters, but in the end I believe my dataset is not dense enoug
 </br></br>
 
 **What kind of produce are found in the Highest Environmental Footprint Categorie (9-6)?**
-Answer: Mostly red meat (Lamb, Beef, Mouton) and shellfish with delivery methods 'iced'.
+  - Mostly red meat (Lamb, Beef, Mouton) and shellfish with delivery methods 'iced'.
 
 | Cluster | Food Group                                   | Count |
 |---------|----------------------------------------------|------------------|
@@ -222,20 +223,20 @@ Answer: Mostly red meat (Lamb, Beef, Mouton) and shellfish with delivery methods
 
 **What kind of produce are found in the Highest Environmental Footprint Categorie (3,0)?**
   - Mostly red meat (Beef, Veal) and duck meat with delivery method 'iced'
-
+</br>
 **Is there product with delivery 'glacé' in category with moderate and low Environmental footprint category?**
   - Yes
-
+</br>
 **Can I still eat meat while trying to minimize my Environmental Footprint?**
   - You can still eat eggs, fish, poultry and and pork and still have a low Environmental Footprint Score diet.
-
+</br>
 **Can I still buy prepared food for a lazy night or a quick meal while minimizing my Environmental Footprint?**
   - Yes, most prepared-meal are found in low Environmental Footprint Score clusters.
-
+</br>
 
 ---
 # Conclusion
----
+
 By using the Agglomerative Clustering algorithm we were able to group the food dataset into 10 clusters. 
 
 The unsupervised Agglomerative Clustering algorithm was able to capture that the difference in the food clusters was their Environmental Footprint. 
