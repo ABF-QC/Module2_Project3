@@ -73,7 +73,7 @@ An subjective evaluation will be performed to access how well each clustering al
 ---
 ## Step 6 : Analysis of the best Clustering Model (Agglomerative Clustering)
 
-More detailed results can be found here [Results](Notebook/Results.md)
+More detailed results can be found here [Results](notebook/Results.md)
 
 
 Using the data subset, the Agglomerative Clustering algorithm successfully identified the key elements to group food data by their Environmental Footprint.
