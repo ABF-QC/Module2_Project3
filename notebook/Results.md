@@ -148,6 +148,8 @@ Tried various parameters, but in the end I believe my dataset is not dense enoug
 ---
 # Results of the Agglomerative Clustering
 
+![Distribution Clusters_EF_Score](../graph/Cluster_ACorder.png)
+</br></br>
 
 ![Clusters_EF_Score](../graph/Clusters_AC.png)
 </br></br>
@@ -171,6 +173,7 @@ Tried various parameters, but in the end I believe my dataset is not dense enoug
 **What kind of produce are found in the Highest Environmental Footprint Categorie (9-6)?**
   - Mostly red meat (Lamb, Beef, Mouton) and shellfish with delivery methods 'iced'.
 </br>
+A subset of the dataset 
 | Cluster | Food Group                                   | Count |
 |---------|----------------------------------------------|------------------|
 | 4       | aides culinaires et ingrédients divers      | 74               |
