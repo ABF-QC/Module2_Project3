@@ -15,7 +15,6 @@ Two dataset will be used by the clustering algorithm.
 | Delivery (temperature and distance)  | None   |
 | Packaging Approach                   | None   |
 | Preparation (cooking)                | None   |
-| Climate Change                       | kg CO2 eq/kg de produit |
 | Ozone Layer Depletion                | kg CVC11 eq/kg de produit |
 | Ionizing Radiation                   | kBq U-235 eq/kg de produit |
 | Photochemical Ozone Formation        | kg NMVOC eq/kg de produit |
@@ -39,7 +38,6 @@ Two dataset will be used by the clustering algorithm.
 ### Data subset
 | Column name               | Units  |
 |--------------------------------------|--------|
-| Climate Change                       | kg CO2 eq/kg de produit |
 | Photochemical Ozone Formation        | kg NMVOC eq/kg de produit |
 | Fine Particles                       | disease inc./kg de produit |
 | Toxicological Effects on Human Health | CTUh/kg de produit |
@@ -49,7 +47,7 @@ Two dataset will be used by the clustering algorithm.
 | Water Resource Depletion             | m³ depriv./kg de produit |
 | Energy Resource Depletion            | MJ/kg de produit |
 | Mineral Resource Depletion           | kg Sb eq/kg de produit |
-
+| Climate Change                       | kg CO2 eq/kg de produit |
 
 ---
 # Analysis
