@@ -111,7 +111,7 @@ Tested many K value for KMeans. However, 10 clusters was performing better by ca
 </br></br>
 
 KMeans were able to group food by EF Score. 
-![Clusters_EF_Score](graph/Clusters_Kmeans.png)
+![Clusters_EF_Score](../graph/Clusters_Kmeans.png)
 </br></br>
 
 ### **Agglomerative Clustering (AC)**
