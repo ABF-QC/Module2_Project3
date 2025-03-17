@@ -56,7 +56,7 @@ Two dataset will be used by the clustering algorithm.
 # Analysis
 ---
 
-Most Food have an Environmental Footprint Score between 0 and 2.
+Most Food have an Environmental Footprint (EF) Score between 0 and 2.
 
 ![Distribution](../graph/Histogram.png)
 
@@ -73,262 +73,169 @@ On the other hand, 'Eggs' and 'Meat Substitutes' have a very low EF SCore.
 ![Food Sub-Group vs EF Score](../graph/FoodSubGroup_vs_EF.png)
 
 </br></br>
-By looking at the correlation between the various columns, we noticed that all the categorical columns that contains a category 'No internet service' is in fact a perfect replica of the columns 'Internet Service' with the category value of 'No'.
+The delivery method 'Iced' has the highest EF Score.
+**It is important to note that and Iced delivery has an significant higher EF Score than a Frozen deliver**
 
-Therefore, all categorical columns containing the category 'No internet service' were cleaned, with the exception of the column 'Internet Service'.
 
-
-![Correlation Heatmap](../graph/Correlation_heatmap_all.png)
+![Delivery vs EF Score](../graph/Delivery.png)
 
 </br></br>
+
+Using the 'Stove' and 'Oven' to preapare a meal leads to higher EF Score
+
+![Preparation vs EF Score](../graph/Preparation.png)
+
 
 ---
 # Our models
 ---
 
-### **Logistic Regression**
+### **KMeans**
 
-The best parameters for the Logistic Regression model are {'C': 100, 'max_iter': 10000, 'penalty': 'l1', 'solver': 'liblinear', 'tol': 0.01}.
+1. Full dataset
+![k Kmeans](../graph/KMeans-k-full.png)
 
-The features used to build the logistic regression model are the 5 most correlated columns with the Churn Value column.
+Tested 3 K value for KMeans clustering 60,80,90. However, none captured the grouping by EF Score that we were expecting. The food seems to be grouped by food category.
 
-| Feature                         | Importance |
-|--------------------------------|:----------:|
-| Tenure Months                 | 0.3522     |
-| Internet Service_Fiber optic   | 0.3080     |
-| Contract_Two year             | 0.3023     |
-| Payment Method_Electronic check | 0.3019     |
-| Dependents_Yes                | 0.2485     |
+![k Kmeans](../graph/Kmeans-90k.png)
 
+2. Data Subset
 
-### **K-Nearest Neighbor
+![k Kmeans](../graph/Kmeans-10k.png)
 
-In K-Nearest Neighbors (KNN), determining feature importance is not straightforward because KNN is a distance-based algorithm rather than a model that assigns explicit weights to features like decision trees or linear regression.
+Tested many K value for KMeans. However, 10 clusters was performing better by capturing the right amount of cluster and regrouping food with similar EF score together.
 
-#### Model Accuracy
-| Metric               | Score  |
-|----------------------|--------|
-| Model accuracy score | 0.7370 |
+![k Kmeans](../graph/Cluster-Kmeans-10k.png)
 
 
-#### K-Fold Cross Validation - 10 Fold
-| Metric                         | Score  |
-|--------------------------------|--------|
-| Average cross-validation score | 0.7416 |
-| Lowest cross-validation score  | 0.7221 |
-| Highest cross-validation score | 0.7627 |
+KMeans were able to group food by EF Score. 
+![Clusters_EF_Score](graph/Clusters_Kmeans.png)
 
 
-#### GridSearchCV Best Parameters
-| Hyperparameter         | Best Value       |
-|-----------------------|-----------------|
-| classifier__n_neighbors | n_neighbors=14, p=2.0 |
-| classifier__weights    | uniform         |
-| Best score       |        0.7767     |
+### **Agglomerative Clustering (AC)**
+
+For all AC model the metric was et to 'euclidean' and the linkage was set to 'ward'.
+
+1. Full dataset
+![k AC](../graph/Silhouette_full.png)
+
+Tested 3 K value for AC clustering 60,80,90. However, none captured the grouping by EF Score that we were expecting. The food seems to be grouped by food category.
+
+![AC](../graph/AC-90k.png)
+
+2. Data Subset
+
+![k AC-10](../graph/Silhouette-sub.png)
+
+Tested many K value for KMeans. However, 10 clusters was performing better by capturing the right amount of cluster and regrouping food with similar EF score together.
+
+![AC-10](../graph/Ac-10k.png)
 
 
-### **Random Forest**
-Understanding which features impact customer churn is crucial for improving retention strategies. The table below displays the **feature importance scores** from a trained **Random Forest model**. These scores indicate how much each feature contributes to predicting whether a customer will churn.
-
- **Tenure Months (0.168)** is the most important factor, meaning customers who have been with the company longer are less likely to churn.
- **Monthly Charges (0.143)** is also significant, so pricing plays a key role in retention.
- Features like **Internet Service Type, Contract Type** also contribute to churn prediction.
- **Demographic factors like gender and senior citizenship** play a smaller role.
-
-### **Feature Importance for Churn Prediction**
-| **Feature**                                  | **Importance Score** |
-|---------------------------------------------|--------------------|
-| Tenure Months                               | 0.168757          |
-| Monthly Charges                             | 0.143493          |
-| Latitude                                    | 0.121566          |
-| Longitude                                   | 0.119230          |
-| Internet Service_Fiber optic                | 0.050034          |
-| Contract_Two year                           | 0.041809          |
-| Payment Method_Electronic check             | 0.035338          |
-| Dependents_Yes                              | 0.034666          |
-| Contract_One year                           | 0.026356          |
-| Gender_Male                                 | 0.023360          |
-| Partner_Yes                                 | 0.022789          |
-| Paperless Billing_Yes                       | 0.021448          |
-| Online Security_Yes                         | 0.021020          |
-| Tech Support_Yes                            | 0.020890          |
-| Online Backup_Yes                           | 0.019128          |
-| Senior Citizen_Yes                          | 0.018984          |
-| Multiple Lines_Yes                          | 0.017637          |
-| Device Protection_Yes                       | 0.017438          |
-| Streaming Movies_Yes                        | 0.016733          |
-| Streaming TV_Yes                            | 0.015196          |
-| Internet Service_No                         | 0.014582          |
-| Payment Method_Mailed check                 | 0.011278          |
-| Payment Method_Credit card (automatic)      | 0.011104          |
-| Phone Service_Yes                           | 0.007164          |
+AC was the best at grouping food by EF Score. 
+![Clusters_EF_Score](../graph/Clusters_AC.png)
 
 
-### **DecisionTreeClassifier**
+### **DBSCAN**
+DBSCAN is not able to capture the right amount of clusters. 
 
-The Decision Tree Classifier was chosen to address the unbalanced dataset that we have.
+Tried various parameters, but in the end I believe my dataset is not dense enough to be using that algorithm.
 
-Various scoring methods and weights were tested to address the issue of the unbalanced dataset. However, the most suited scoring method that was found during the process is the 'balanced_accuracy'. The best weights found was {0:0.5, 1:1.5}.
-
-The decision tree was build with 24 features. However, the most important features are :
-
-| Feature                         | Importance |
-|--------------------------------|:----------:|
-| Contract_Two year            | 0.354717   |
-| Contract_One year            | 0.209229   |
-| Tenure Months                | 0.099239   |
-| Dependents_Yes               | 0.093631   |
-| Internet Service_Fiber optic  | 0.092869   |
-| Latitude                      | 0.035499   |
-| Streaming Movies_Yes         | 0.033793   |
-| Monthly Charges              | 0.027313   |
-| Longitude                    | 0.014449   |
-| Internet Service_No          | 0.013449   |
-| Phone Service_Yes            | 0.012041   |
-| Payment Method_Electronic check | 0.006196   |
-| Online Security_Yes          | 0.003894   |
-| Senior Citizen_Yes           | 0.003683   |
-
-In addition, the final decision tree classifier had a depth of 6.
-
-</br></br>
 
 ---
-# Scores of the various classification models
+# Results of the best Clustering model - Agglomerative Clustering
 ---
 
-**Explanation of Metrics:**
 
->    **Precision**: The proportion of true positive predictions out of all positive predictions.</br>
-     **Recall**: The proportion of true positive predictions out of all actual positive instances.</br>
-     **F1-score**: The harmonic mean of precision and recall, balancing both metrics.</br>
-     **Support**: The number of actual occurrence</br>
-     
+![Clusters_EF_Score](../graph/Clusters_AC.png)
 
-## Results
 
-**Logistic Regression**
-|               | Precision | Recall | F1-Score | Support |
-|---------------|:---------:|:------:|:-------:|:-------:|
-| **Class 0**   | 0.84     | 0.91   | 0.87    | 783     |
-| **Class 1**   | 0.65     | 0.49   | 0.56    | 274     |
-| **Accuracy**  | -        | -      | 0.80    | 1057    |
-| **Macro Avg** | 0.74     | 0.70   | 0.71    | 1057    |
-| **Weighted Avg** | 0.79     | 0.80   | 0.79    | 1057    |
 
-</br></br>
-**K-Nearest Neighbor** (weights=uniform)
-
-|               | Precision | Recall | F1-Score | Support |
-|---------------|:---------:|:------:|:-------:|:-------:|
-| **Class 0**   | 0.83     | 0.81   | 0.82    | 783     |
-| **Class 1**   | 0.49     | 0.51   | 0.50    | 274     |
-| **Accuracy**  | -        | -   | 0.74        | 1057    |
-| **Macro Avg** | 0.66     | 0.66   | 0.66    | 1057    |
-| **Weighted Avg** | 0.74     | 0.74   | 0.74    | 1057    |
-
-</br></br>
-**Random Forest** (scoring=accuracy, class_weights={0: 1, 1: 1})
-|               | Precision | Recall | F1-Score | Support |
-|---------------|:---------:|:------:|:-------:|:-------:|
-| **Class 0**   | 0.86     | 0.90   | 0.88    | 783     |
-| **Class 1**   | 0.66     | 0.57   | 0.61    | 274     |
-| **Accuracy**  | -        | -      | 0.81    | 1057    |
-| **Macro Avg** | 0.76     | 0.73   | 0.74    | 1057    |
-| **Weighted Avg** | 0.81     | 0.81   | 0.81    | 1057    |
+| Cluster | Environmental Footprint          | Key Characteristics |
+|---------|----------------------------------------|----------------------|
+| 4       | Lowest      | - Lowest Fine Particles  <br> - Lowest Ecotoxicity for Freshwater Aquatic System  <br> - Low Land Use  <br> - Lowest Energy Resource Depletion  <br> - Lowest Climate Change Impact |
+| 1       | Low         | - Low Fine Particles  <br> - Low Ecotoxicity for Freshwater Aquatic System  <br> - Moderate Land Use  <br> - Low Energy Resource Depletion  <br> - Low Climate Change Impact |
+| 5       | Low           | - Moderate Photochemical Ozone Formation  <br> - Low Water Eutrophication  <br> - High Water Resource Depletion  <br> - Low Mineral Resource Depletion  <br> - Low Climate Change Impact |
+| 8       | Moderate-Low | - Low Land Use  <br> - High Energy Resource Depletion  <br> - Low-Moderate Climate Change |
+| 2       | Moderate    | - High Photochemical Ozone Formation  <br> - High Fine Particles  <br> - Low Ecotoxicity for Freshwater Aquatic System  <br> - Low Land Use  <br> - Second Lowest Water Resource Depletion  <br> - Moderate Energy Resource Depletion  <br> - Low-Moderate Climate Change |
+| 7       | Moderate       | - Highest Water Eutrophication  <br> - High Land Use  <br> - Low Water Resource Depletion  <br> - Moderate Energy Resource Depletion  <br> - Moderate Climate Change |
+| 0       | Moderate-High | - High Ecotoxicity for Freshwater Aquatic System  <br> - Second Highest Land Use  <br> - Moderate Water Resource Depletion  <br> - Second Highest Climate Change Impact |
+| 3       | High         | - Highest Freshwater Eutrophication  <br> - Extreme Water Resource Depletion |
+| 6       | High          | - High Ecotoxicity for Freshwater Aquatic System  <br> - Highest Land Use  <br> - Highest Climate Change Impact |
+| 9       | Highest       | - Highest Photochemical Ozone Formation  <br> - Highest Ecotoxicity for Freshwater Aquatic System  <br> - Highest Energy Resource Depletion  <br> - Highest Mineral Resource Depletion |
 
 </br></br>
 
-**DecisionTreeClassifier** (scoring=balanced_accuracy, class_weights={0: 0.5, 1: 1.5})
-|               | Precision | Recall | F1-Score | Support |
-|---------------|----------|-------|---------|--------|
-| Class 0       | 0.93     | 0.67  | 0.78    | 783    |
-| Class 1       | 0.48     | 0.86  | 0.61    | 274    |
-| Accuracy      | -        | - | 0.72        | 1057   |
-| Macro Avg     | 0.71     | 0.77  | 0.70    | 1057   |
-| Weighted Avg  | 0.82     | 0.72  | 0.74    | 1057   |
-</br></br>
+**What kind of produce are found in the Highest Environmental Footprint Categorie (9-6)?**
+Answer: Mostly red meat (Lamb, Beef, Mouton) and shellfish with delivery methods 'iced'.
 
----
-# Validation of best model (Ramdom Forest), of balanced model (DecisionTreeClassifier) and of client's model (Churn Score)
----
-In this notebook, we will be validating and comparing different models together
-
-Here are the three models that will be validated and for which we will be comparing the results:
-1. The best model found, which is a Random Forest model, based on the accuracy score.
-2. The best model based on the balanced accuracy score, which is a Decision Tree Classifier model.
-3. The client's actual model from which the Churn Score is calculated.
-
-
-## Results
-
-The accuracy is not the only scores that matters. As seen during this project, the scoring method best suited to optimize a Classification model is really dependent on the goal that the model need to achieve.
-
-In this case, the client wanted to forecast the hit event the most accurately while minimizing the missed event. Therefore, a scoring method that would have balanced the dataset and try to find the best model that tend to have 0 False Negative, while optimizing the balanced accuracy would have been the best scoring method for this project.
-
-![Confusion Matrix](../graph/tempo.png)
-</br></br>
-
-It is a lesson learn that a model with the most accuracy does not always provide the best forecast.
-
-We were not able to provide a better model than the pre-existing model used to produce the Churn Score and suit better the client's needs.
-
-
-| Balanced Model</br>DecisionTreeClassifier              | Balanced Model</br>Random Forest                  | Client pre-existing model</br> Churn Score               |
-|-----------------------|-----------------------|-----------------------|
-| ![Confusion Matrix Balanced Model](../graph/ConfusionMatrix_val_BalancedModel.png) | ![Confusion Matrix Best Model](../graph/ConfusionMatrix_val_BestModel1.png) |  ![Confusion Matrix Balanced Model](../graph/ConfusionMatrix_val_ChurnScore.png) | 
-
-</br></br></br>
-<center>
-    
-####  Balanced Model (DecisionTreeClassifier)
-
-</center>
-
-| Metric       | Precision | Recall | F1-Score | Support |
-|-------------|:---------:|:------:|:-------:|:-------:|
-| **Class 0** | 0.93     | 0.72   | 0.81    | 538     |
-| **Class 1** | 0.47     | 0.83   | 0.60    | 166     |
-| **Accuracy**| -        | -      | 0.74    | 704     |
-| **Macro Avg** | 0.70    | 0.77   | 0.71    | 704     |
-| **Weighted Avg** | 0.82 | 0.74   | 0.76    | 704     |
+| Cluster | Food Group                                   | Count |
+|---------|----------------------------------------------|------------------|
+| 4       | aides culinaires et ingrédients divers      | 74               |
+|         | aliments infantiles                         | 30               |
+|         | boissons                                    | 131              |
+|         | entrées et plats composés                   | 85               |
+|         | fruits, légumes, légumineuses et oléagineux | 314              |
+|         | glaces et sorbets                           | 14               |
+|         | lait et produits laitiers                  | 81               |
+|         | matières grasses                           | 4                |
+|         | produits céréaliers                        | 159              |
+|         | produits sucrés                            | 13               |
+|         | viandes, œufs, poissons                    | 20               |
+| 1       | aides culinaires et ingrédients divers      | 65               |
+|         | aliments infantiles                         | 8                |
+|         | boissons                                    | 5                |
+|         | entrées et plats composés                   | 179              |
+|         | fruits, légumes, légumineuses et oléagineux | 96               |
+|         | glaces et sorbets                           | 11               |
+|         | lait et produits laitiers                  | 139              |
+|         | matières grasses                           | 47               |
+|         | produits céréaliers                        | 214              |
+|         | produits sucrés                            | 38               |
+|         | viandes, œufs, poissons                    | 137              |
+| 5       | aides culinaires et ingrédients divers      | 1                |
+|         | boissons                                    | 1                |
+|         | entrées et plats composés                   | 15               |
+|         | fruits, légumes, légumineuses et oléagineux | 13               |
+|         | lait et produits laitiers                  | 2                |
+|         | matières grasses                           | 6                |
+|         | produits céréaliers                        | 2                |
+|         | produits sucrés                            | 2                |
+|         | viandes, œufs, poissons                    | 207              |
+| 8       | aides culinaires et ingrédients divers      | 17               |
+|         | boissons                                    | 1                |
+|         | fruits, légumes, légumineuses et oléagineux | 3                |
+| 2       | entrées et plats composés                   | 18               |
+|         | viandes, œufs, poissons                    | 107              |
+| 7       | viandes, œufs, poissons                    | 11               |
+| 0       | boissons                                    | 1                |
+|         | entrées et plats composés                   | 12               |
+|         | lait et produits laitiers                  | 1                |
+|         | matières grasses                           | 1                |
+|         | viandes, œufs, poissons                    | 121              |
+| 3       | viandes, œufs, poissons                    | 8                |
+| 6       | viandes, œufs, poissons                    | 34               |
+| 9       | viandes, œufs, poissons                    | 3                |
 
 
 </br></br>
-<center>
-    
-####  Balanced Model (Random Forest)
 
-</center>
+**What kind of produce are found in the Highest Environmental Footprint Categorie (3,0)?**
+  - Mostly red meat (Beef, Veal) and duck meat with delivery method 'iced'
 
-| Metric       | Precision | Recall | F1-Score | Support |
-|-------------|:---------:|:------:|:-------:|:-------:|
-| **Class 0** | 0.86     | 0.91   | 0.88    | 538     |
-| **Class 1** | 0.64     | 0.50   | 0.56    | 166     |
-| **Accuracy**| -        | -      | 0.82    | 704     |
-| **Macro Avg** | 0.75    | 0.71   | 0.72    | 704     |
-| **Weighted Avg** | 0.80 | 0.82   | 0.81    | 704     |
+**Is there product with delivery 'glacé' in category with moderate and low Environmental footprint category?**
+  - Yes
 
-</br></br>
-<center>
-    
-####  Client Pre-existing Model (Churn Score)
+**Can I still eat meat while trying to minimize my Environmental Footprint?**
+  - You can still eat eggs, fish, poultry and and pork and still have a low Environmental Footprint Score diet.
 
-</center>
+**Can I still buy prepared food for a lazy night or a quick meal while minimizing my Environmental Footprint?**
+  - Yes, most prepared-meal are found in low Environmental Footprint Score clusters.
 
-| Metric       | Precision | Recall | F1-Score | Support |
-|-------------|:---------:|:------:|:-------:|:-------:|
-| **Class 0** | 1.00     | 0.49   | 0.65    | 538     |
-| **Class 1** | 0.37     | 1.00   | 0.55    | 166     |
-| **Accuracy**| -        | -      | 0.61    | 704     |
-| **Macro Avg** | 0.69    | 0.74   | 0.60    | 704     |
-| **Weighted Avg** | 0.85 | 0.61   | 0.63    | 704     |
-
-</br></br>
 
 ---
 # Conclusion
 ---
-We learned a valuable lesson.  that a model with the most accuracy does not always provide the best forecast.
+By using the Agglomerative Clustering algorithm we were able to group the food dataset into 10 clusters. 
 
-We were not able to provide a better model than the pre-existing client's model used to produce the Churn Score.
+The unsupervised Agglomerative Clustering algorithm was able to capture that the difference in the food clusters was their Environmental Footprint. 
