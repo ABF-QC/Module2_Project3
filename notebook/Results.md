@@ -42,10 +42,8 @@ Two dataset will be used by the clustering algorithm.
 | Climate Change                       | kg CO2 eq/kg de produit |
 | Photochemical Ozone Formation        | kg NMVOC eq/kg de produit |
 | Fine Particles                       | disease inc./kg de produit |
-| Toxicological Effects on Human Health: Non-carcinogenic Substances | CTUh/kg de produit |
-| Toxicological Effects on Human Health: Carcinogenic Substances | CTUh/kg de produit.1 |
-| Freshwater Eutrophication            | kg P eq/kg de produit |
-| Marine Eutrophication                | kg N eq/kg de produit |
+| Toxicological Effects on Human Health | CTUh/kg de produit |
+| Water Eutrophication            | kg P eq/kg de produit |
 | Ecotoxicity for Freshwater Aquatic Ecosystems | CTUe/kg de produit |
 | Land Use                             | Pt/kg de produit |
 | Water Resource Depletion             | m³ depriv./kg de produit |
