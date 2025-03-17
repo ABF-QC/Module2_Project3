@@ -144,9 +144,9 @@ DBSCAN is not able to capture the right amount of clusters.
 
 Tried various parameters, but in the end I believe my dataset is not dense enough to be using that algorithm.
 
-
+</br></br>
 ---
-# Results of the best Clustering model - Agglomerative Clustering
+# Results of the Agglomerative Clustering
 
 
 ![Clusters_EF_Score](../graph/Clusters_AC.png)
@@ -170,7 +170,7 @@ Tried various parameters, but in the end I believe my dataset is not dense enoug
 
 **What kind of produce are found in the Highest Environmental Footprint Categorie (9-6)?**
   - Mostly red meat (Lamb, Beef, Mouton) and shellfish with delivery methods 'iced'.
-
+</br>
 | Cluster | Food Group                                   | Count |
 |---------|----------------------------------------------|------------------|
 | 4       | aides culinaires et ingrédients divers      | 74               |
@@ -225,12 +225,15 @@ Tried various parameters, but in the end I believe my dataset is not dense enoug
 **What kind of produce are found in the Highest Environmental Footprint Categorie (3,0)?**
   - Mostly red meat (Beef, Veal) and duck meat with delivery method 'iced'
 </br>
+
 **Is there product with delivery 'glacé' in category with moderate and low Environmental footprint category?**
   - Yes
 </br>
+
 **Can I still eat meat while trying to minimize my Environmental Footprint?**
   - You can still eat eggs, fish, poultry and and pork and still have a low Environmental Footprint Score diet.
 </br>
+
 **Can I still buy prepared food for a lazy night or a quick meal while minimizing my Environmental Footprint?**
   - Yes, most prepared-meal are found in low Environmental Footprint Score clusters.
 </br>
